@@ -1,0 +1,74 @@
+# Reproducibility Manifest
+# This file pins all versions needed to reproduce the AlamoOnboard system.
+# Used by scripts/regenerate.sh and make reproduce.
+
+schema_version: "1.0"
+
+# Git
+commit_sha: ""   # Filled automatically by scripts/preflight.sh at submission time
+repository: "https://github.com/REPLACE_WITH_YOUR_GITHUB_ORG/alamoonboard"   # TODO: update with real URL before submission
+
+# Python runtime
+python:
+  version: "3.11"       # Docker container uses python:3.11-slim
+  implementation: CPython
+
+# Random seed (used by any test that requires determinism)
+random_seed: 42
+
+# Embedding model
+embedding:
+  model_id: sentence-transformers/all-MiniLM-L6-v2
+  source: huggingface_hub
+  # Stable commit SHA for all-MiniLM-L6-v2 (verified May 2026)
+  # Re-verify with: python -c "from huggingface_hub import model_info; print(model_info('sentence-transformers/all-MiniLM-L6-v2').sha)"
+  commit_sha: "7dbbc90392e2f80f3d3c277d6e90027e55de9125"
+  dimension: 384
+  normalization: l2
+
+# LLM (runtime; not downloaded — served at endpoint)
+llm:
+  default_model_id: llama-3.3-70b-instruct-awq
+  temperature: 0.2
+  endpoint_env_var: ALAMO_LLM_BASE_URL
+
+# Data pipeline
+data_pipeline:
+  sources:
+    - name: CPS Energy
+      url: https://www.cpsenergy.com
+      scrape_tool: sa_utilities.adapters.cps.CPSAdapter
+    - name: SAWS
+      url: https://www.saws.org
+      scrape_tool: sa_utilities.adapters.saws.SAWSAdapter
+    - name: City of San Antonio
+      url: https://www.sa.gov
+      scrape_tool: sa_utilities.adapters.cosa.CoSAAdapter
+  change_detection: fingerprint   # ETag > Last-Modified > SHA256
+  crawl_delay_seconds: 1.0
+  chunk_sizes_chars:
+    rate: 600
+    fee: 600
+    policy: 800
+    assistance: 800
+    default: 700
+  chunk_overlap_chars: 100
+
+# Key package versions (exact pins; match requirements.txt)
+packages:
+  gradio: "6.14.0"
+  openai: "2.34.0"
+  sentence-transformers: "5.4.1"
+  faiss-cpu: "1.13.2"
+  rank-bm25: "0.2.2"
+  numpy: "2.4.4"
+  chromadb: ">=0.5"
+  huggingface-hub: "1.13.0"
+
+# Test thresholds
+test_thresholds:
+  unit_pass_rate: 1.0          # 100% of unit tests must pass
+  story_pass_rate: 0.90        # ≥90% of user story tests must pass
+  coverage_min: 0.70           # ≥70% line coverage on src/ + sa_utilities/
+  load_rps_min: 10             # ≥10 requests/second at 20 concurrent users
+  load_error_rate_max: 0.05    # <5% error rate over 60s window

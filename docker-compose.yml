@@ -1,0 +1,25 @@
+services:
+  app:
+    build: .
+    ports:
+      - "7860:7860"
+    volumes:
+      # Persist user state, FAISS index, and logs across container restarts
+      - ./output:/app/output
+      # Persist test reports so the host can see junit XMLs, coverage, benchmarks
+      - ./reports:/app/reports
+      # Persist SA Utilities pipeline data (chunks + ChromaDB)
+      - ./sa_utilities/data:/app/sa_utilities/data
+    env_file:
+      - .env
+    environment:
+      # These can be overridden in .env
+      - GRADIO_SERVER_NAME=0.0.0.0
+      - GRADIO_SERVER_PORT=7860
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:7860/"]
+      interval: 15s
+      timeout: 10s
+      retries: 6
+      start_period: 120s   # allow time for model download on first run
+    restart: unless-stopped

@@ -1,0 +1,122 @@
+<svg viewBox="0 0 900 620" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#555"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="620" fill="#f8f9fa" rx="8"/>
+  <text x="450" y="32" text-anchor="middle" font-size="18" font-weight="bold" fill="#1a1a2e">AlamoOnboard — System Architecture</text>
+
+  <!-- User -->
+  <rect x="30" y="60" width="120" height="48" rx="8" fill="#4361ee" stroke="#3a56d4" stroke-width="1.5"/>
+  <text x="90" y="80" text-anchor="middle" font-size="12" fill="white" font-weight="bold">User</text>
+  <text x="90" y="98" text-anchor="middle" font-size="10" fill="#cce" >Browser / Chat</text>
+
+  <!-- Gradio UI -->
+  <rect x="200" y="55" width="150" height="58" rx="8" fill="#3a86ff" stroke="#2d7de8" stroke-width="1.5"/>
+  <text x="275" y="78" text-anchor="middle" font-size="12" fill="white" font-weight="bold">Gradio UI</text>
+  <text x="275" y="95" text-anchor="middle" font-size="10" fill="#cce">src/ui/gradio_app.py</text>
+  <text x="275" y="107" text-anchor="middle" font-size="9" fill="#aad">port 7860</text>
+
+  <!-- Arrow: User -> UI -->
+  <line x1="150" y1="84" x2="198" y2="84" stroke="#555" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Agent Orchestrator -->
+  <rect x="420" y="50" width="170" height="68" rx="8" fill="#8338ec" stroke="#7028d4" stroke-width="1.5"/>
+  <text x="505" y="73" text-anchor="middle" font-size="12" fill="white" font-weight="bold">Agent Orchestrator</text>
+  <text x="505" y="90" text-anchor="middle" font-size="10" fill="#dce">src/agent/orchestrator.py</text>
+  <text x="505" y="107" text-anchor="middle" font-size="9" fill="#bac">FSM · tool calls · history</text>
+
+  <!-- Arrow: UI -> Agent -->
+  <line x1="350" y1="84" x2="418" y2="84" stroke="#555" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- LLM Client -->
+  <rect x="680" y="50" width="170" height="68" rx="8" fill="#ff006e" stroke="#e0005f" stroke-width="1.5"/>
+  <text x="765" y="73" text-anchor="middle" font-size="12" fill="white" font-weight="bold">LLM Client</text>
+  <text x="765" y="90" text-anchor="middle" font-size="10" fill="#fcc">src/agent/llm_client.py</text>
+  <text x="765" y="107" text-anchor="middle" font-size="9" fill="#faa">llama-3.3-70b-instruct-awq</text>
+
+  <!-- Arrow: Agent -> LLM -->
+  <line x1="590" y1="84" x2="678" y2="84" stroke="#555" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Tool Box -->
+  <rect x="420" y="180" width="170" height="58" rx="8" fill="#06d6a0" stroke="#04b889" stroke-width="1.5"/>
+  <text x="505" y="203" text-anchor="middle" font-size="12" fill="white" font-weight="bold">ToolBox</text>
+  <text x="505" y="220" text-anchor="middle" font-size="10" fill="#cef">src/agent/tools.py</text>
+  <text x="505" y="232" text-anchor="middle" font-size="9" fill="#ade">retrieve · checklist · form</text>
+
+  <!-- Arrow: Agent -> Tools (down) -->
+  <line x1="505" y1="118" x2="505" y2="178" stroke="#555" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- HybridRetriever -->
+  <rect x="180" y="300" width="180" height="60" rx="8" fill="#118ab2" stroke="#0e79a0" stroke-width="1.5"/>
+  <text x="270" y="323" text-anchor="middle" font-size="12" fill="white" font-weight="bold">HybridRetriever</text>
+  <text x="270" y="340" text-anchor="middle" font-size="10" fill="#cde">src/indexer/retriever.py</text>
+  <text x="270" y="352" text-anchor="middle" font-size="9" fill="#9bc">BM25 + FAISS + RRF</text>
+
+  <!-- Arrow: Tools -> Retriever -->
+  <line x1="450" y1="210" x2="360" y2="330" stroke="#555" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- FormWorkflow -->
+  <rect x="570" y="300" width="180" height="60" rx="8" fill="#ffd166" stroke="#e0b84a" stroke-width="1.5"/>
+  <text x="660" y="323" text-anchor="middle" font-size="12" fill="#333" font-weight="bold">FormWorkflow FSM</text>
+  <text x="660" y="340" text-anchor="middle" font-size="10" fill="#555">src/forms/workflow.py</text>
+  <text x="660" y="352" text-anchor="middle" font-size="9" fill="#666">validators · prefill</text>
+
+  <!-- Arrow: Tools -> Workflow -->
+  <line x1="560" y1="210" x2="650" y2="298" stroke="#555" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- FAISS Index -->
+  <rect x="80" y="420" width="150" height="55" rx="8" fill="#343a40" stroke="#23282e" stroke-width="1.5"/>
+  <text x="155" y="442" text-anchor="middle" font-size="12" fill="white" font-weight="bold">FAISS Index</text>
+  <text x="155" y="458" text-anchor="middle" font-size="10" fill="#aaa">output/index/</text>
+  <text x="155" y="470" text-anchor="middle" font-size="9" fill="#888">384-dim, L2 norm</text>
+
+  <!-- Arrow: Retriever -> FAISS -->
+  <line x1="220" y1="360" x2="180" y2="418" stroke="#555" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ChromaDB -->
+  <rect x="260" y="420" width="150" height="55" rx="8" fill="#495057" stroke="#353b42" stroke-width="1.5"/>
+  <text x="335" y="442" text-anchor="middle" font-size="12" fill="white" font-weight="bold">ChromaDB</text>
+  <text x="335" y="458" text-anchor="middle" font-size="10" fill="#aaa">sa_utilities/data/chroma/</text>
+  <text x="335" y="470" text-anchor="middle" font-size="9" fill="#888">pipeline data store</text>
+
+  <!-- Arrow: Retriever -> Chroma (dashed - build time) -->
+  <line x1="290" y1="360" x2="320" y2="418" stroke="#999" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrow)"/>
+
+  <!-- ChecklistTracker -->
+  <rect x="570" y="420" width="180" height="55" rx="8" fill="#6c757d" stroke="#565e64" stroke-width="1.5"/>
+  <text x="660" y="442" text-anchor="middle" font-size="12" fill="white" font-weight="bold">ChecklistTracker</text>
+  <text x="660" y="458" text-anchor="middle" font-size="10" fill="#ddd">src/checklist/tracker.py</text>
+  <text x="660" y="470" text-anchor="middle" font-size="9" fill="#bbb">output/user_state.json</text>
+
+  <!-- Arrow: Workflow -> Tracker -->
+  <line x1="660" y1="360" x2="660" y2="418" stroke="#555" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- SA Utilities Pipeline -->
+  <rect x="80" y="530" width="330" height="50" rx="8" fill="#adb5bd" stroke="#8d959d" stroke-width="1.5"/>
+  <text x="245" y="552" text-anchor="middle" font-size="12" fill="#1a1a2e" font-weight="bold">SA Utilities Pipeline (build-time only)</text>
+  <text x="245" y="570" text-anchor="middle" font-size="10" fill="#333">sa_utilities/ — scrape CPS · SAWS · CoSA → chunk → embed → ChromaDB</text>
+
+  <!-- Arrow: Pipeline -> ChromaDB (dashed) -->
+  <line x1="245" y1="530" x2="335" y2="476" stroke="#999" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrow)"/>
+
+  <!-- Logging -->
+  <rect x="680" y="180" width="170" height="55" rx="8" fill="#e9c46a" stroke="#d4a841" stroke-width="1.5"/>
+  <text x="765" y="202" text-anchor="middle" font-size="12" fill="#333" font-weight="bold">Structured Logging</text>
+  <text x="765" y="218" text-anchor="middle" font-size="10" fill="#555">src/utils/logging_utils.py</text>
+  <text x="765" y="230" text-anchor="middle" font-size="9" fill="#666">request_id · JSON · stdout</text>
+
+  <!-- Arrow: Agent -> Logging -->
+  <line x1="765" y1="118" x2="765" y2="178" stroke="#999" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arrow)"/>
+
+  <!-- Legend -->
+  <rect x="570" y="530" width="290" height="70" rx="6" fill="white" stroke="#ccc" stroke-width="1"/>
+  <text x="715" y="548" text-anchor="middle" font-size="11" font-weight="bold" fill="#333">Legend</text>
+  <line x1="585" y1="563" x2="615" y2="563" stroke="#555" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="625" y="567" font-size="10" fill="#555">Runtime call</text>
+  <line x1="585" y1="583" x2="615" y2="583" stroke="#999" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrow)"/>
+  <text x="625" y="587" font-size="10" fill="#555">Build-time / async</text>
+</svg>

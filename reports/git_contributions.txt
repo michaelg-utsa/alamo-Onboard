@@ -1,0 +1,8 @@
+# git shortlog output — regenerate before submission with:
+#   git shortlog -sne --all --no-merges > reports/git_contributions.txt
+#
+# Placeholder until commits are made.
+# Each team member must have commits across ≥ 2 of: source / tests / docs
+
+     0	Member A <member_a@utsa.edu>
+     0	Member B <member_b@utsa.edu>

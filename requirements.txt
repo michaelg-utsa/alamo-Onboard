@@ -1,0 +1,46 @@
+# ---------------------------------------------------------------
+# AlamoOnboard — pinned production dependencies
+# Versions verified on Python 3.11 (Docker container).
+# Run 'pip install -r requirements.txt' to reproduce the exact environment.
+# ---------------------------------------------------------------
+
+# Core UI
+gradio==6.14.0
+
+# LLM client (OpenAI-compatible endpoint)
+openai==2.34.0
+
+# Retrieval
+sentence-transformers==5.4.1
+faiss-cpu==1.13.2
+rank-bm25==0.2.2
+numpy==2.4.4
+
+# HuggingFace model download
+huggingface_hub==1.13.0
+
+# SA Utilities pipeline (scrape + chunk + embed)
+# Only needed for 'make download-data'. Not required at runtime if the
+# on-disk FAISS index already exists.
+requests==2.33.1
+beautifulsoup4==4.14.3
+pdfplumber==0.11.9
+
+# chromadb: used by SA Utilities embedder to store chunk vectors during
+# the pipeline build. Not needed at runtime after the FAISS index is built.
+# Version is intentionally not pinned here because chromadb's native libs
+# vary by platform. Use the version pre-installed in the Docker image.
+chromadb>=0.5
+
+# Type hints back-compat
+typing-extensions==4.15.0
+
+# ---------------------------------------------------------------
+# Dev / test dependencies (not needed for runtime)
+# ---------------------------------------------------------------
+# ruff==0.15.12
+# black==26.3.1
+# mypy==1.20.2
+# pytest==9.0.3
+# pytest-cov==7.1.0
+# locust>=2.0

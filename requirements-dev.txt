@@ -1,0 +1,13 @@
+# ---------------------------------------------------------------
+# AlamoOnboard — development & test dependencies
+# Install with: pip install -r requirements-dev.txt
+# These are not needed to run the application.
+# ---------------------------------------------------------------
+
+ruff==0.15.12
+black==26.3.1
+mypy==1.20.2
+pytest==9.0.3
+pytest-cov==7.1.0
+locust>=2.0
+pip-audit>=2.0

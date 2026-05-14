@@ -1,0 +1,339 @@
+{
+  "version": "0.1.0",
+  "forms": {
+    "cps_energy_start": {
+      "service_id": "cps_energy",
+      "title": "Start CPS Energy electric and gas service",
+      "provider": "CPS Energy",
+      "submit_url": "https://www.cpsenergy.com/startservice",
+      "lead_time_days": 2,
+      "description": "Open a residential CPS Energy account so the lights, A/C, and gas are on when you arrive. CPS Energy needs at least two business days notice and cannot start service on weekends or holidays.",
+      "fields": [
+        {
+          "name": "first_name",
+          "label": "First name",
+          "type": "text",
+          "required": true,
+          "prefill_from": "user.first_name"
+        },
+        {
+          "name": "last_name",
+          "label": "Last name",
+          "type": "text",
+          "required": true,
+          "prefill_from": "user.last_name"
+        },
+        {
+          "name": "date_of_birth",
+          "label": "Date of birth",
+          "type": "date",
+          "required": true,
+          "prefill_from": "user.date_of_birth",
+          "validator": "date_of_birth"
+        },
+        {
+          "name": "ssn_or_dl",
+          "label": "SSN or driver license number",
+          "type": "secret",
+          "required": true,
+          "validator": "ssn_or_dl",
+          "help": "CPS Energy uses this for credit screening. Either a U.S. SSN or a state-issued driver license number is accepted."
+        },
+        {
+          "name": "email",
+          "label": "Email",
+          "type": "email",
+          "required": true,
+          "validator": "email",
+          "prefill_from": "user.email"
+        },
+        {
+          "name": "phone",
+          "label": "Phone",
+          "type": "phone",
+          "required": true,
+          "validator": "phone_us",
+          "prefill_from": "user.phone"
+        },
+        {
+          "name": "service_address",
+          "label": "Service address",
+          "type": "address",
+          "required": true,
+          "validator": "address",
+          "prefill_from": "user.service_address"
+        },
+        {
+          "name": "service_city",
+          "label": "City",
+          "type": "text",
+          "required": true,
+          "prefill_from": "user.service_city",
+          "default": "San Antonio"
+        },
+        {
+          "name": "service_state",
+          "label": "State",
+          "type": "text",
+          "required": true,
+          "default": "TX"
+        },
+        {
+          "name": "service_zip",
+          "label": "ZIP",
+          "type": "text",
+          "required": true,
+          "validator": "zip_us",
+          "prefill_from": "user.service_zip"
+        },
+        {
+          "name": "requested_start_date",
+          "label": "Requested start date",
+          "type": "date",
+          "required": true,
+          "validator": "lead_time_2bd",
+          "help": "Must be at least two business days from today and not a weekend or CPS Energy holiday."
+        },
+        {
+          "name": "is_military_relocation",
+          "label": "Active-duty military relocating to San Antonio?",
+          "type": "boolean",
+          "required": false,
+          "default": false,
+          "help": "Active-duty military may have the deposit waived."
+        },
+        {
+          "name": "wants_paperless",
+          "label": "Enroll in Manage My Account paperless billing?",
+          "type": "boolean",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "wants_budget_billing",
+          "label": "Enroll in Budget Payment Plan?",
+          "type": "boolean",
+          "required": false,
+          "default": false
+        }
+      ],
+      "completion_message": "Once submitted, CPS Energy will email a confirmation on the day service is scheduled to start. If a deposit is required, they will contact you by phone or email."
+    },
+    "saws_start": {
+      "service_id": "saws",
+      "title": "Start SAWS water and wastewater service",
+      "provider": "San Antonio Water System",
+      "submit_url": "https://www.saws.org/service/start-stop-service/",
+      "lead_time_days": 5,
+      "description": "Open a SAWS account so water and sewer service are on when you arrive. SAWS asks for at least five business days notice and cannot turn on service on weekends or holidays. A $10 meter trip fee and a residential deposit (around $100) usually apply.",
+      "fields": [
+        {
+          "name": "first_name",
+          "label": "First name",
+          "type": "text",
+          "required": true,
+          "prefill_from": "user.first_name"
+        },
+        {
+          "name": "last_name",
+          "label": "Last name",
+          "type": "text",
+          "required": true,
+          "prefill_from": "user.last_name"
+        },
+        {
+          "name": "date_of_birth",
+          "label": "Date of birth",
+          "type": "date",
+          "required": true,
+          "prefill_from": "user.date_of_birth",
+          "validator": "date_of_birth"
+        },
+        {
+          "name": "ssn_last4",
+          "label": "Last 4 of SSN",
+          "type": "secret",
+          "required": true,
+          "validator": "ssn_last4"
+        },
+        {
+          "name": "email",
+          "label": "Email",
+          "type": "email",
+          "required": true,
+          "validator": "email",
+          "prefill_from": "user.email"
+        },
+        {
+          "name": "phone",
+          "label": "Phone",
+          "type": "phone",
+          "required": true,
+          "validator": "phone_us",
+          "prefill_from": "user.phone"
+        },
+        {
+          "name": "service_address",
+          "label": "Service address",
+          "type": "address",
+          "required": true,
+          "validator": "address",
+          "prefill_from": "user.service_address"
+        },
+        {
+          "name": "service_city",
+          "label": "City",
+          "type": "text",
+          "required": true,
+          "prefill_from": "user.service_city",
+          "default": "San Antonio"
+        },
+        {
+          "name": "service_state",
+          "label": "State",
+          "type": "text",
+          "required": true,
+          "default": "TX"
+        },
+        {
+          "name": "service_zip",
+          "label": "ZIP",
+          "type": "text",
+          "required": true,
+          "validator": "zip_us",
+          "prefill_from": "user.service_zip"
+        },
+        {
+          "name": "requested_start_date",
+          "label": "Requested start date",
+          "type": "date",
+          "required": true,
+          "validator": "lead_time_5bd",
+          "help": "Must be at least five business days from today and not a weekend or SAWS holiday."
+        },
+        {
+          "name": "residency_proof_type",
+          "label": "Proof of residency type",
+          "type": "select",
+          "required": true,
+          "options": [
+            "Lease agreement",
+            "Closing documents",
+            "Utility bill in your name"
+          ]
+        },
+        {
+          "name": "letter_of_credit_available",
+          "label": "Have a letter of credit from a previous water utility?",
+          "type": "boolean",
+          "required": false,
+          "default": false,
+          "help": "A letter of credit showing 12 months of on-time payments may waive the deposit."
+        },
+        {
+          "name": "is_dv_survivor_waiver",
+          "label": "Apply for the Domestic Violence Deposit Waiver?",
+          "type": "boolean",
+          "required": false,
+          "default": false
+        }
+      ],
+      "completion_message": "Bring a copy of your photo ID and your proof of residency to the SAWS portal upload page when prompted. A SAWS technician will visit on the start date to take the first meter reading."
+    },
+    "cosa_solid_waste": {
+      "service_id": "cosa_solid_waste",
+      "title": "Confirm trash, recycling, and organics service",
+      "provider": "City of San Antonio Solid Waste Management",
+      "submit_url": "https://www.sa.gov/Directory/Departments/SWMD",
+      "lead_time_days": 0,
+      "description": "Solid waste service is automatic when CPS Energy service starts at an address inside city limits, but a new resident still needs to confirm carts are present and look up the weekly collection day. If carts are missing, request delivery through 3-1-1.",
+      "fields": [
+        {
+          "name": "first_name",
+          "label": "First name",
+          "type": "text",
+          "required": true,
+          "prefill_from": "user.first_name"
+        },
+        {
+          "name": "last_name",
+          "label": "Last name",
+          "type": "text",
+          "required": true,
+          "prefill_from": "user.last_name"
+        },
+        {
+          "name": "phone",
+          "label": "Phone",
+          "type": "phone",
+          "required": true,
+          "validator": "phone_us",
+          "prefill_from": "user.phone"
+        },
+        {
+          "name": "service_address",
+          "label": "Service address",
+          "type": "address",
+          "required": true,
+          "validator": "address",
+          "prefill_from": "user.service_address"
+        },
+        {
+          "name": "service_zip",
+          "label": "ZIP",
+          "type": "text",
+          "required": true,
+          "validator": "zip_us",
+          "prefill_from": "user.service_zip"
+        },
+        {
+          "name": "cps_account_number",
+          "label": "CPS Energy account number (if known)",
+          "type": "text",
+          "required": false,
+          "validator": "cps_account",
+          "help": "Solid waste fees are billed on the CPS Energy account."
+        },
+        {
+          "name": "carts_present",
+          "label": "Are the brown, blue, and green carts already at the property?",
+          "type": "select",
+          "required": true,
+          "options": [
+            "Yes, all three",
+            "Only some of them",
+            "No carts at all",
+            "Not sure yet"
+          ]
+        },
+        {
+          "name": "preferred_brown_cart_size",
+          "label": "Preferred brown trash cart size",
+          "type": "select",
+          "required": true,
+          "options": [
+            "Small (48 gallon, ~$14.76/mo)",
+            "Medium (64 gallon, ~$20.26/mo)",
+            "Large (96 gallon, ~$30.75/mo)"
+          ],
+          "default": "Medium (64 gallon, ~$20.26/mo)"
+        },
+        {
+          "name": "wants_collection_day_lookup",
+          "label": "Look up your weekly collection day now?",
+          "type": "boolean",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "wants_text_alerts",
+          "label": "Sign up for cart-serviced text notifications?",
+          "type": "boolean",
+          "required": false,
+          "default": false
+        }
+      ],
+      "completion_message": "If any carts are missing or the wrong size, a 3-1-1 request will be queued for you. Set carts at the curb by 7:00 AM on your collection day, with at least three feet of clearance."
+    }
+  }
+}

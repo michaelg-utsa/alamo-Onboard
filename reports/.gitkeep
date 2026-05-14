@@ -1,0 +1,3 @@
+# This directory holds auto-generated test and coverage reports.
+# Run `make test` to populate it.
+# All *.xml, *.json, *.html, *.txt files here are gitignored.

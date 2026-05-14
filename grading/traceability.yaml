@@ -1,0 +1,96 @@
+# Traceability Matrix
+# Maps each user story to its spec section, source modules, and test file.
+
+schema_version: "1.0"
+
+stories:
+
+  - id: US-01
+    title: "Ask a factual question about CPS Energy"
+    spec_section: "Data Flow / Runtime Query Flow"
+    source_modules:
+      - src/agent/orchestrator.py
+      - src/agent/llm_client.py
+      - src/agent/tools.py
+      - src/agent/prompts.py
+      - src/indexer/retriever.py
+      - src/indexer/embedder.py
+      - src/indexer/vector_store.py
+    test_file: tests/user_stories/test_user_stories.py::TestUS01FactualQuestion
+    type: happy_path
+
+  - id: US-02
+    title: "View the move-in checklist"
+    spec_section: "Public Interfaces / src/checklist/tracker.py"
+    source_modules:
+      - src/agent/orchestrator.py
+      - src/checklist/tracker.py
+      - src/ui/gradio_app.py
+    test_file: tests/user_stories/test_user_stories.py::TestUS02ViewChecklist
+    type: happy_path
+
+  - id: US-03
+    title: "Start and complete the CPS Energy signup form"
+    spec_section: "Workflow FSM — Command Reference"
+    source_modules:
+      - src/agent/orchestrator.py
+      - src/forms/workflow.py
+      - src/forms/schemas.py
+      - src/forms/validators.py
+      - src/forms/prefill.py
+      - src/checklist/tracker.py
+    test_file: tests/user_stories/test_user_stories.py::TestUS03CPSEnergySignup
+    type: happy_path
+
+  - id: US-04
+    title: "Start and complete the SAWS signup form"
+    spec_section: "Form Schemas / SAWS"
+    source_modules:
+      - src/agent/orchestrator.py
+      - src/forms/workflow.py
+      - src/forms/schemas.py
+      - src/forms/validators.py
+      - src/forms/prefill.py
+      - src/checklist/tracker.py
+    test_file: tests/user_stories/test_user_stories.py::TestUS04SAWSSignup
+    type: happy_path
+
+  - id: US-05
+    title: "Use keep-all to accept all pre-filled form values"
+    spec_section: "Workflow FSM — Command Reference"
+    source_modules:
+      - src/agent/orchestrator.py
+      - src/forms/workflow.py
+      - src/forms/prefill.py
+    test_file: tests/user_stories/test_user_stories.py::TestUS05KeepAll
+    type: happy_path
+
+  - id: US-06
+    title: "Pause a form and resume it later"
+    spec_section: "Workflow FSM — Command Reference"
+    source_modules:
+      - src/agent/orchestrator.py
+      - src/forms/workflow.py
+      - src/checklist/tracker.py
+    test_file: tests/user_stories/test_user_stories.py::TestUS06PauseAndResume
+    type: happy_path
+
+  - id: US-07
+    title: "Enter an invalid email and see a validation error"
+    spec_section: "Public Interfaces / src/forms/validators.py"
+    source_modules:
+      - src/forms/validators.py
+      - src/forms/workflow.py
+      - src/agent/orchestrator.py
+    test_file: tests/user_stories/test_user_stories.py::TestUS07EmailValidation
+    type: error_path
+
+  - id: US-08
+    title: "Request a start date too soon and see a lead time error"
+    spec_section: "Public Interfaces / src/forms/validators.py"
+    source_modules:
+      - src/forms/validators.py
+      - src/forms/workflow.py
+      - src/agent/orchestrator.py
+    test_file: tests/user_stories/test_user_stories.py::TestUS08LeadTimeValidation
+    type: error_path
