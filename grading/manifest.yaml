@@ -6,7 +6,7 @@ schema_version: "1.0"
 
 # Git
 commit_sha: ""   # Filled automatically by scripts/preflight.sh at submission time
-repository: "https://github.com/REPLACE_WITH_YOUR_GITHUB_ORG/alamoonboard"   # TODO: update with real URL before submission
+repository: "https://github.com/michaelg-utsa/alamo-Onboard"   # TODO: update with real URL before submission
 
 # Python runtime
 python:

@@ -27,7 +27,7 @@ San Antonio utilities & city-services concierge. A conversational agent that hel
 ```bash
 # 1. Clone the repository
 #    Replace the URL below with the actual repo URL from grading/manifest.yaml
-git clone https://github.com/YOUR_TEAM/alamoonboard
+git clone https://github.com/michaelg-utsa/alamo-Onboard
 cd alamoonboard
 
 # 2. Configure environment
