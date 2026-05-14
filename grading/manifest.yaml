@@ -5,7 +5,7 @@
 schema_version: "1.0"
 
 # Git
-commit_sha: ""   # Filled automatically by scripts/preflight.sh at submission time
+commit_sha: "14bfe86b8db5c2b2f18a8fade55bdf92a50af17e"   # Filled automatically by scripts/preflight.sh at submission time
 repository: "https://github.com/michaelg-utsa/alamo-Onboard"   # TODO: update with real URL before submission
 
 # Python runtime
